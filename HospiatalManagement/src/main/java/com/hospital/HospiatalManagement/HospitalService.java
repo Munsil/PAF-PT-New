@@ -65,5 +65,23 @@ public class HospitalService
 	return output;
 	}
 	
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteItem(String HospitalData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(HospitalData, "", Parser.xmlParser());
+
+	//Read the value from the element <itemID>
+	 String hopitalid = doc.select("hospitalid").text();
+	 String output = HospitalObj.deleteHospital(hopitalid);
+	return output;
+	}
+
+	
+	
 }
 
