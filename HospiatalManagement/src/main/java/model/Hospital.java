@@ -18,7 +18,7 @@ public class Hospital
 						 {e.printStackTrace();}
 						 return con;
 				 }
-		public String insertHospital(String name, String address, String charge, String phonenumber, String roomcount)
+		public String insertHospital(String hospitalid, String name, String address, String charge, String phonenumber, String roomcount)
 			{
 				 String output = "";
 				 try
@@ -29,14 +29,14 @@ public class Hospital
 						 {return "Error while connecting to the database for inserting."; }
 						 
 						 // create a prepared statement
-						 String query = " insert into hospital(`hospitalid`,`name`,`address`,`charge`,`phonenumber`, 'roomcount')values (?, ?, ?, ?, ? ,?)";
+						 String query = "insert into hospital values(?,?,?,?,?,?)";
 						 
 					
 					
 						
 						 PreparedStatement preparedStmt = con.prepareStatement(query);
 						 // binding values
-						 preparedStmt.setInt(1, 0);
+						 preparedStmt.setInt(1, Integer.parseInt(hospitalid));
 						 preparedStmt.setString(2, name);
 						 preparedStmt.setString(3, address);
 						 preparedStmt.setDouble(4, Double.parseDouble(charge));
