@@ -126,11 +126,13 @@ public class Hospital
 					 
 					 PreparedStatement preparedStmt = con.prepareStatement(query);
 					 // binding values
+					 preparedStmt.setInt(6, Integer.parseInt(hospitalid));
 					 preparedStmt.setString(1, name);
 					 preparedStmt.setString(2, address);
 					 preparedStmt.setDouble(3, Double.parseDouble(charge));
 					 preparedStmt.setString(4, phonenumber);
 					 preparedStmt.setInt(5, Integer.parseInt(roomcount));
+					 
 					 // execute the statement
 					 preparedStmt.execute();
 					 con.close();
