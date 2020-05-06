@@ -19,10 +19,9 @@ pageEncoding="ISO-8859-1"%>
 				<div class="col-5">
 					<h1 class="m-3">Hospital Details</h1>
 			
-						<form id="formHospital" name="formHospital" >
-											 Hospital Id:
-											<input id="hospitalid" name="hospitalid" type="text"
-											 class="form-control form-control-sm">
+						<form id="formHospital" name="formHospital" method="post" action="Hospital.jsp" >
+											
+											 
 											<br> Hospital Name:
 											<input id="name" name="name" type="text"
 											 class="form-control form-control-sm">

@@ -20,7 +20,7 @@ public class Hospital
 						 {e.printStackTrace();}
 						 return con;
 				 }
-		public String insertHospital(String hospitalid, String name, String address, String charge, String phonenumber, String roomcount)
+		public String insertHospital(String name, String address, String charge, String phonenumber, String roomcount)
 			{
 				 String output = "";
 				 try
@@ -38,7 +38,7 @@ public class Hospital
 						
 						 PreparedStatement preparedStmt = con.prepareStatement(query);
 						 // binding values
-						 preparedStmt.setInt(1, Integer.parseInt(hospitalid));
+						 preparedStmt.setInt(1, 0);
 						 preparedStmt.setString(2, name);
 						 preparedStmt.setString(3, address);
 						 preparedStmt.setDouble(4, Double.parseDouble(charge));
@@ -74,7 +74,7 @@ public class Hospital
 						 {return "Error while connecting to the database for reading."; }
 						 
 						 // Prepare the html table to be displayed
-						 output = "<table class=\"table table-dark\" border=\"3\"><tr><th>ID</th><th>Name</th><th>Address</th><th>Charge</th><th>Phone Number</th><th>Room Count</th><th>Update</th><th>Remove</th></tr>";
+						 output = "<table class=\"table table-dark\" border=\"3\"><tr><th>Name</th><th>Address</th><th>Charge</th><th>Phone Number</th><th>Room Count</th><th>Update</th><th>Remove</th></tr>";
 								 	
 						
 						 String query = "select * from hospital";
@@ -83,35 +83,32 @@ public class Hospital
 						 // iterate through the rows in the result set
 						 while (rs.next())
 						 {
-						 String hospitalID = Integer.toString(rs.getInt("hospitalid"));
-						 String hospitalName = rs.getString("name");
-						 String hospitalAddress = rs.getString("address");
-						 String hospitalCharge = Double.toString(rs.getDouble("charge"));
-						 String hospitalPhone = rs.getString("phonenumber");
-						 String hospitalcount = Integer.toString(rs.getInt("roomcount"));
+						 String hospitalid = Integer.toString(rs.getInt("hospitalid"));
+						 String name = rs.getString("name");
+						 String address = rs.getString("address");
+						 String charge = Double.toString(rs.getDouble("charge"));
+						 String phonenumber = rs.getString("phonenumber");
+						 String roomcount = Integer.toString(rs.getInt("roomcount"));
 						 
 						 
 						 // Add into the html table
-						 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + hospitalID + "'>" 
-						 + hospitalID + "</td>";
-						 output += "<td>" + hospitalName + "</td>";
-						 output += "<td>" + hospitalAddress + "</td>";
-						 output += "<td>" + hospitalCharge + "</td>";
-						 output += "<td>" + hospitalPhone + "</td>";
-						 output += "<td>" + hospitalcount + "</td>";
+						 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + hospitalid + "'>" 
+						 + name + "</td>";
+						 output += "<td>" + address + "</td>";
+						 output += "<td>" + charge + "</td>";
+						 output += "<td>" + phonenumber + "</td>";
+						 output += "<td>" + roomcount + "</td>";
 						 
 						 output += "<td><input name='btnUpdate' type='button' value='Update'  class='btnUpdate btn btn-secondary'></td>"
 							 		+ "<td><input name='btnRemove' type='button'  value='Remove'  class='btnRemove btn btn-danger' data-hospitalid='"
-									 + hospitalID + "'>" + "</td></tr>";
+									 + hospitalid + "'>" + "</td></tr>";
 						  
 						 
 						 
 					
 						 }
 						 con.close();
-						 
-						 
-						 
+ 
 						 // Complete the html table
 						 output += "</table >";
 						 }
@@ -136,13 +133,13 @@ public class Hospital
 					 
 					 PreparedStatement preparedStmt = con.prepareStatement(query);
 					 // binding values
-					 preparedStmt.setInt(6, Integer.parseInt(hospitalid));
+					 
 					 preparedStmt.setString(1, name);
 					 preparedStmt.setString(2, address);
 					 preparedStmt.setDouble(3, Double.parseDouble(charge));
 					 preparedStmt.setString(4, phonenumber);
 					 preparedStmt.setInt(5, Integer.parseInt(roomcount));
-					 
+					 preparedStmt.setInt(6, Integer.parseInt(hospitalid));
 					 // execute the statement
 					 preparedStmt.execute();
 					 con.close();

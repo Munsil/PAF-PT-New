@@ -49,8 +49,7 @@ public class HospitalAPI extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		String output = HospitalObj.insertHospital(request.getParameter("hospitalid"),
-				 request.getParameter("name"),
+		String output = HospitalObj.insertHospital(request.getParameter("name"),
 				request.getParameter("address"),
 				request.getParameter("charge"),
 				request.getParameter("ponenumber"),
